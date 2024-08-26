@@ -14,12 +14,12 @@ namespace VGAudio
             const int ChannelCount = 1;
             const int SampleRate = 44100;
             const int SampleBitRate = 128000;
-            if (args.Length != 3)
+            if (args.Length != 2)
             {
                 Console.WriteLine("Usage: VGAudio <sekai_XX_XXXXXX.hca> <output.wav>"); 
                 return 1;
             }
-            var path = args[1]; var opath = args[2];
+            var path = args[0]; var opath = args[1];
             var stream = File.OpenRead(path);
             HcaStructure data = new HcaStructure();
             data.Hca.ChannelCount = ChannelCount;
@@ -32,8 +32,8 @@ namespace VGAudio
             Console.WriteLine("Frame Count: " + data.Hca.FrameCount);
             HcaReader.ReadHcaData(new BinaryReader(stream), data);
             {
-                var result = CriHcaDecoder.Decode(data.Hca, data.AudioData);
-                Pcm16FormatBuilder builder = new Pcm16FormatBuilder(result, data.Hca.SampleRate);
+                var pcm = CriHcaDecoder.Decode(data.Hca, data.AudioData);
+                Pcm16FormatBuilder builder = new Pcm16FormatBuilder(pcm, data.Hca.SampleRate);
                 var fmt = builder.Build();
                 WaveWriter writer = new WaveWriter();
                 var ostream = File.OpenWrite(opath);
