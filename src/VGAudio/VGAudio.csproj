@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.1;net45</TargetFrameworks>
+    <TargetFrameworks>net80</TargetFrameworks>
 
     <AssemblyTitle>VGAudio</AssemblyTitle>
     <Authors>Alex Barney</Authors>
@@ -14,6 +14,7 @@
     <RepositoryUrl>https://github.com/Thealexbarney/VGAudio</RepositoryUrl>
     <NoWarn>$(NoWarn);1591</NoWarn>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <OutputType>Exe</OutputType>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.1' ">

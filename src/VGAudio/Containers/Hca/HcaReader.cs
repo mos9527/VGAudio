@@ -120,7 +120,7 @@ namespace VGAudio.Containers.Hca
             hca.CalculateHfrValues();
         }
 
-        private static void ReadHcaData(BinaryReader reader, HcaStructure structure)
+        public static void ReadHcaData(BinaryReader reader, HcaStructure structure)
         {
             structure.AudioData = new byte[structure.Hca.FrameCount][];
             for (int i = 0; i < structure.Hca.FrameCount; i++)
@@ -131,6 +131,7 @@ namespace VGAudio.Containers.Hca
                 if (crc != expectedCrc)
                 {
                     // TODO: Decide how to handle bad CRC
+                    throw new InvalidDataException();
                 }
 
                 structure.AudioData[i] = data;

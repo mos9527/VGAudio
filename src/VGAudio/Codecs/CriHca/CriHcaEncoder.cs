@@ -323,7 +323,7 @@ namespace VGAudio.Codecs.CriHca
             return Clamp(bitrate, minBitrate, maxBitrate);
         }
 
-        private static void CalculateBandCounts(HcaInfo hca, int bitrate, int cutoffFreq)
+        public static void CalculateBandCounts(HcaInfo hca, int bitrate, int cutoffFreq)
         {
             hca.FrameSize = bitrate * 1024 / hca.SampleRate / 8;
             int numGroups = 0;
